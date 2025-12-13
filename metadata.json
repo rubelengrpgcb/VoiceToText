@@ -1,0 +1,7 @@
+{
+  "name": "BanglaScribe",
+  "description": "A powerful React application that uses Google Gemini 2.5 Flash to transcribe Bangla (Bengali) speech from video and audio files into accurate text.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
