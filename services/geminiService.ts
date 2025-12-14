@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 // Initialize Gemini Client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || 'FAKE_API_KEY_FOR_DEVELOPMENT' });
 
 const MAX_INLINE_SIZE = 20 * 1024 * 1024; // 20MB limit for inline data
 
@@ -36,7 +36,7 @@ const waitForFileActive = async (fileName: string, apiKey: string): Promise<void
 };
 
 const uploadFileToGemini = async (file: File): Promise<{ uri: string, mimeType: string }> => {
-  const API_KEY = process.env.API_KEY;
+  const API_KEY = process.env.API_KEY || 'FAKE_API_KEY_FOR_DEVELOPMENT';
   if (!API_KEY) throw new Error("API Key is missing.");
 
   // 1. Initiate Resumable Upload
@@ -90,7 +90,7 @@ const uploadFileToGemini = async (file: File): Promise<{ uri: string, mimeType: 
 };
 
 export const transcribeMedia = async (file: File): Promise<string> => {
-  if (!process.env.API_KEY) {
+  if (!process.env.API_KEY || 'FAKE_API_KEY_FOR_DEVELOPMENT') {
     throw new Error("API Key is missing. Please check your environment configuration.");
   }
 
